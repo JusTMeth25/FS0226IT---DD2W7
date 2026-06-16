@@ -159,6 +159,13 @@ document.getElementById("lista-libri").addEventListener("click", (e) => {
   }
 });
 
+// === Event listener svuota lista libri ===
+document.getElementById("svuota-tutto").addEventListener("click", () => {
+  libri = [];
+  localStorage.removeItem(STORAGE_KEY);
+  renderLibri();
+});
+
 class LibroAudio extends Libro {
   constructor(_titolo, _autore, _anno, _durataMinuti) {
     super(_titolo, _autore, _anno);

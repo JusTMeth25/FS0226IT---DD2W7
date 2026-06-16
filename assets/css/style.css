@@ -53,6 +53,29 @@ body {
   margin-top: 28px;
 }
 
+.lista-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lista-header h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.btn-svuota {
+  color: red;
+  background: none;
+  border-color: red;
+  border-radius: 5px;
+  width: 120px;
+  height: 40px;
+}
+
+.info-storage {
+  font-style: italic;
+  color: grey;
+}
 .lista-libri {
   list-style: none;
   padding: 0;
