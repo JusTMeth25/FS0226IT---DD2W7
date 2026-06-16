@@ -76,10 +76,19 @@ class LibroAudio extends Libro {
 
 // === Stato ===
 let libri = caricaLibri();
-
+let filtroAttuale = "tutti"; // valori possibili: "tutti", "letti", "daLeggere"
 // === Render ===
 function renderLibri() {
-  const html = libri
+  let libriFiltrati;
+
+  if (filtroAttuale === "letti") {
+    libriFiltrati = libri.filter((l) => l.letto);
+  } else if (filtroAttuale === "daLeggere") {
+    libriFiltrati = libri.filter((l) => !l.letto);
+  } else {
+    libriFiltrati = libri;
+  }
+  const html = libriFiltrati
     .map(
       (l) =>
         `
@@ -99,7 +108,7 @@ function renderLibri() {
     .join("");
 
   document.getElementById("lista-libri").innerHTML = html;
-  document.getElementById("contatore").textContent = libri.length;
+  document.getElementById("contatore").textContent = libriFiltrati.length;
 }
 
 // === Mostra / nasconde campo dimensione ===
@@ -115,6 +124,20 @@ document.getElementById("formato").addEventListener("change", (e) => {
   } else {
     document.getElementById("campo-durata").setAttribute("hidden", "");
   }
+});
+
+// === Filtro ===
+document.getElementById("filter-all").addEventListener("click", () => {
+  filtroAttuale = "tutti";
+  renderLibri();
+});
+document.getElementById("filter-read").addEventListener("click", () => {
+  filtroAttuale = "letti";
+  renderLibri();
+});
+document.getElementById("filter-toRead").addEventListener("click", () => {
+  filtroAttuale = "daLeggere";
+  renderLibri();
 });
 
 // === Submit form ===
