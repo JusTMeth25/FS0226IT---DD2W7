@@ -63,6 +63,17 @@ class LibroDigitale extends Libro {
   }
 }
 
+class LibroAudio extends Libro {
+  constructor(_titolo, _autore, _anno, _durataMinuti) {
+    super(_titolo, _autore, _anno);
+    this.durataMinuti = _durataMinuti;
+  }
+
+  formato() {
+    return `audio (${this.durataMinuti} minuti)`;
+  }
+}
+
 // === Stato ===
 let libri = caricaLibri();
 
@@ -149,12 +160,14 @@ document.getElementById("lista-libri").addEventListener("click", (e) => {
 
     if (libro) {
       libro.segnaComeLetto();
+      salvaLibri();
       renderLibri();
     }
   }
 
   if (azione === "Rimuovi") {
     libri = libri.filter((l) => l.id !== idLibro);
+    salvaLibri();
     renderLibri();
   }
 });
@@ -165,14 +178,17 @@ document.getElementById("svuota-tutto").addEventListener("click", () => {
   localStorage.removeItem(STORAGE_KEY);
   renderLibri();
 });
+// === Event listener esporta lista libri ===
+document.getElementById("export-all").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(libri, null, 2)], {
+    type: "application/json",
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "libri.json";
+  a.click();
+  URL.revokeObjectURL(url);
+});
 
-class LibroAudio extends Libro {
-  constructor(_titolo, _autore, _anno, _durataMinuti) {
-    super(_titolo, _autore, _anno);
-    this.durataMinuti = _durataMinuti;
-  }
-
-  formato() {
-    return `audio (${this.durataMinuti} minuti)`;
-  }
-}
+renderLibri();

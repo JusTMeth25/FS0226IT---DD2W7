@@ -71,6 +71,15 @@ body {
   width: 120px;
   height: 40px;
 }
+.btn-export {
+  margin-left: 250px;
+  color: white;
+  background: green;
+  border-color: green;
+  border-radius: 5px;
+  width: 120px;
+  height: 40px;
+}
 
 .info-storage {
   font-style: italic;
