@@ -139,6 +139,18 @@ document.getElementById("filter-toRead").addEventListener("click", () => {
   filtroAttuale = "daLeggere";
   renderLibri();
 });
+// === Ordina per titolo o anno ===
+document.getElementById("ordina").addEventListener("change", (e) => {
+  const criterio = e.target.value;
+
+  if (criterio === "titolo") {
+    libri.sort((a, b) => a.titolo.localeCompare(b.titolo));
+  } else if (criterio === "anno") {
+    libri.sort((a, b) => a.anno - b.anno);
+  }
+  salvaLibri();
+  renderLibri();
+});
 
 // === Submit form ===
 document.getElementById("aggiungi-libro").addEventListener("submit", (e) => {

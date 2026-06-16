@@ -81,6 +81,33 @@ body {
   height: 40px;
 }
 
+.btn-daLeggere {
+  color: red;
+  background: none;
+  border-color: red;
+  border-radius: 5px;
+  width: 120px;
+  height: 40px;
+}
+
+.btn-letti {
+  color: green;
+  background: none;
+  border-color: green;
+  border-radius: 5px;
+  width: 120px;
+  height: 40px;
+}
+
+.btn-all {
+  color: black;
+  background: none;
+  border-color: black;
+  border-radius: 5px;
+  width: 120px;
+  height: 40px;
+}
+
 .info-storage {
   font-style: italic;
   color: grey;
