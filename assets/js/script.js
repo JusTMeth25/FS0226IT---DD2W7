@@ -26,7 +26,7 @@ function caricaLibri() {
 
       l.id = d.id;
       l.letto = d.letto;
-
+      if (d.id > Libro.contatore) Libro.contatore = d.id;
       return l;
     });
   }
